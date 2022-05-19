@@ -11,6 +11,6 @@ spec:
       - path: /
         backend:
           serviceName: backend-service
-          servicePort: 80
+          servicePort: 3000
 
   
