@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  selector:
+    matchLabels:
+      run: backend
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        run: backend
+    spec:
+      containers:
+      - name: backend
+        image: localhost:5000/backend
+        ports:
+        - containerPort: 3000
+        imagePullPolicy: Never
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  labels:
+    run: backend
+spec:
+  ports:
+  - name: http
+    port: 3000
+    targetPort: 3000
+  type: NodePort
+  selector:
+    run: backend
+
+
+
